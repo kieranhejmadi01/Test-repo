@@ -5,7 +5,7 @@ on:
     branches: [ main ]
 
 jobs:
-  print_g++_version:
+  print_compiler_version:
     runs-on: ubuntu-latest
 
     steps:

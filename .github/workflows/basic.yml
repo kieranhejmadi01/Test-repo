@@ -12,10 +12,11 @@ jobs:
       - name: checkout code
         uses: actions/checkout@v4
 
-      - name: set up g++
-        run:
-          sudo apt update \
-          sudo apt install g++ -y
+      - name: update
+        run: sudo apt update
+
+      - name: install compiler
+        run:  sudo apt install g++ -y
 
       - name: print compiler version
         run:

@@ -22,4 +22,21 @@ jobs:
         run:
           g++ --version
 
+      - name: print architecture
+        run: |
+          echo "Architecture:"
+          uname -m
+          echo "OS:"
+          uname -o
+          echo "Kernel version:"
+          uname -r
+          echo "System name:"
+          uname -s
+          echo "System release:"
+          uname -v
+          echo "System information:"
+          uname -a
+
+  
+
       

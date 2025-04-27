@@ -6,7 +6,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-24.04-arm
 
     steps:
       - name: Check out source
@@ -37,19 +37,8 @@ jobs:
             mkdir -p binaries
             mv div_bench.base binaries/div_bench.base
             mv div_bench.opt binaries/div_bench.base
-        uses: actions/upload-artifact@v4
-        with:
-            name: base
-            path: binaries/div_bench.base
-
-  run-benchmark:
-    runs-on: ubuntu-24.04
-    needs: build
-    steps:
-        - name: Check out source
-          uses: actions/checkout@v3
-        - name: Run benchmarks
-          run: |
+      - name: Run benchmarks
+        run: |
             echo "==================== Without Profile-Guided Optimization ===================="
             ./div_bench.base
             echo "==================== With Profile-Guided Optimization ===================="

@@ -32,6 +32,16 @@ jobs:
           ./div_bench.opt
           g++ -O3 -std=c++17 -fprofile-use div_bench.cpp -lbenchmark -lpthread -o div_bench.opt
 
+      - name: upload binaries for comparison
+        run: |
+            mkdir -p binaries
+            mv div_bench.base binaries/div_bench.base
+            mv div_bench.opt binaries/div_bench.base
+        uses: actions/upload-artifact@v4
+        with:
+            name: base
+            path: binaries/div_bench.base
+
   run-benchmark:
     runs-on: ubuntu-24.04
     needs: build

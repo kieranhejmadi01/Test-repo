@@ -20,28 +20,17 @@ jobs:
       - name: Clean previous profiling data
         run: |
           rm -rf ./*gcda
-          rm -rf perf*
           rm -f div_bench.base div_bench.opt
 
-      - name: Compile base binary
+      - name: Compile base and instrumented binary
         run: |
           g++ -O3 -std=c++17 div_bench.cpp -lbenchmark -lpthread -o div_bench.base
-
-      - name: Compile with PGO instrumentation
-        run: |
           g++ -O3 -std=c++17 -fprofile-generate div_bench.cpp -lbenchmark -lpthread -o div_bench.opt
 
-      - name: Generate profile data
+      - name: Generate profile data and compile with PGO
         run: |
           ./div_bench.opt
-
-      - name: Compile with PGO optimization
-        run: |
           g++ -O3 -std=c++17 -fprofile-use div_bench.cpp -lbenchmark -lpthread -o div_bench.opt
-
-      - name: Clean up perf traces
-        run: |
-          rm -rf perf*
 
   run-benchmark:
     runs-on: ubuntu-24.04

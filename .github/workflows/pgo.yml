@@ -5,7 +5,7 @@ on:
     branches: [ main ]
 
 jobs:
-  build-and-benchmark:
+  build:
     runs-on: ubuntu-24.04
 
     steps:
@@ -43,12 +43,17 @@ jobs:
         run: |
           rm -rf perf*
 
-      - name: Run benchmarks
+  run-benchmark:
+    runs-on: ubuntu-24.04
+    needs: build
+    steps: 
+        - name: Run benchmarks
         run: |
           echo "==================== Without Profile-Guided Optimization ===================="
           ./div_bench.base
           echo "==================== With Profile-Guided Optimization ===================="
           ./div_bench.opt
+
 
       #- name: Record perf data for comparison
       #  run: |

@@ -48,23 +48,9 @@ jobs:
     needs: build
     steps: 
         - name: Run benchmarks
-        run: |
-          echo "==================== Without Profile-Guided Optimization ===================="
-          ./div_bench.base
-          echo "==================== With Profile-Guided Optimization ===================="
-          ./div_bench.opt
-
-
-      #- name: Record perf data for comparison
-      #  run: |
-      #    perf record -o perf-division-pgo ./div_bench.opt
-      #    perf record -o perf-division-base ./div_bench.base
-
-      # Optionally, upload the perf data as artifacts:
-      # - name: Upload perf data
-      #   uses: actions/upload-artifact@v3
-      #   with:
-      #     name: perf-data
-      #     path: |
-      #       perf-division-pgo
-      #       perf-division-base
+          run: |
+            echo "==================== Without Profile-Guided Optimization ===================="
+            ./div_bench.base
+            echo "==================== With Profile-Guided Optimization ===================="
+            ./div_bench.opt
+            echo "==================== Benchmarking complete ===================="

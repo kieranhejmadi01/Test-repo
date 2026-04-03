@@ -1,0 +1,10 @@
+name: First Workflow
+on: workflow_dispatch
+jobs:
+    first-job:
+        runs-on: macOS 26 Arm64
+        steps:
+            - name: Print compiler version
+              run: echo "Hello World"
+            - name: clean exit
+              run: echo "exiting"

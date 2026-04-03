@@ -1,0 +1,13 @@
+name: Pull Request Build Check
+on: pull_request
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+
+            - name: configure with cmake on ubuntu
+              run: cmake -S . -B build
+            
+            - name: build
+              run: cmake --build build

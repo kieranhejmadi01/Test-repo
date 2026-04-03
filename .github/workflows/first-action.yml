@@ -2,7 +2,7 @@ name: First Workflow
 on: push
 jobs:
     first-job:
-        runs-on: macOS 26 Arm64
+        runs-on: ubuntu:latest
         steps:
             - name: Print compiler version
               run: echo "Hello World"
